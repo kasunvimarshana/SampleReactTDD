@@ -59,5 +59,5 @@ it('should show home location', () => {
 
 it('should show home price', () => {
     const homePrices = getAllByTestId(container, 'home-price');
-    expect(getNodeText(homePrices[0])).toBe('1');
+    expect(getNodeText(homePrices[0])).toBe('$1/night');
 });
