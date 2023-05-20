@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import apiClient from '../sevices/apiClient';
+import bookingDialogService from '../sevices/bookingDialogService';
 
 export default function Homes() {
     const [homesState, setHomesState] = useState([]);
@@ -25,7 +26,9 @@ export default function Homes() {
                         <button
                             data-testid="home-booking-btn"
                             type="button"
-                            className="btn btn-primary">
+                            className="btn btn-primary"
+                            onClick={() => bookingDialogService.open(home)}
+                        >
                             Book
                         </button>
                     </div>
