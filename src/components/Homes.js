@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { Dialog, DialogContent } from '@material-ui/core';
 import apiClient from '../sevices/apiClient';
 import bookingDialogService from '../sevices/bookingDialogService';
 
@@ -9,6 +10,16 @@ export default function Homes() {
         const homesDataPromise = apiClient.getHomes();
 
         homesDataPromise.then(homesData => setHomesState(homesData));
+    }, []);
+
+    const [bookingDialogState, setBookingDialogState] = useState({ open: false });
+
+    useEffect(() => {
+
+        const subscription = bookingDialogService.events$.subscribe(state => setBookingDialogState(state));
+
+        return () => subscription.unsubscribe();
+
     }, []);
 
     let homes;
@@ -44,6 +55,15 @@ export default function Homes() {
             <div className="row">
                 { homes }
             </div>
+
+            <Dialog
+                open={ bookingDialogState.open }
+                onClose={ () => bookingDialogService.close() }>
+                <DialogContent>
+                Dialog!
+                { bookingDialogState.home ? bookingDialogState.home.title : null }
+                </DialogContent>
+            </Dialog>
         </div>
     );
 };
