@@ -1,13 +1,13 @@
-// import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 import Header from './components/Header';
-import Home from './components/Homes';
+import Homes from './components/Homes';
 
 function App() {
   return (
     <div>
       <Header/>
-      <Home/>
+      <Homes/>
     </div>
   );
 }
